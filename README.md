@@ -1,85 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Event Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a simple Event Management API built using NestJS, TypeScript, and MongoDB.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+- [Requirements](#requirements)
+- [Setup](#setup)
+  - [Clone the Repository](#clone-the-repository)
+  - [Environment Variables](#environment-variables)
+  - [Running the Application Locally](#running-the-application-locally)
+  - [Running the Application with Docker Compose](#running-the-application-with-docker-compose)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Requirements
 
-## Project setup
+Before you begin, ensure you have the following installed on your system:
+
+- Node.js
+- npm
+- Docker (optional)
+
+## Setup
+
+### Clone the Repository
 
 ```bash
-$ npm install
+git clone https://github.com/coredev2/event-management-api.git
+cd event-management-api
 ```
 
-## Compile and run the project
+### Environment Variables
+
+Create a `.env` file in the root directory of your project and add the following environment variables:
+
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/
+```
+
+Replace `<username>` and `<password>` with your actual MongoDB Atlas credentials.
+
+### Running the Application Locally
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Run the application:
+
+   ```bash
+   npm run start:dev
+   ```
+
+   The API will be running at `http://localhost:3000`.
+
+### Running the Application with Docker Compose
+
+1. Build and start the containers:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+2. The API will be running at `http://localhost:3000`, and MongoDB will be running in a separate container.
+
+## API Documentation
+
+The API documentation is available via Swagger. After starting the application, you can access the Swagger UI at:
+
+```
+http://localhost:3000/api-docs
+```
+
+This UI allows you to interact with the API endpoints, view request/response schemas, and test the API.
+
+## Project Structure
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+src/
+├── events/
+│   ├── dto/
+│   │   ├── create-event.dto.ts
+│   │   ├── update-event.dto.ts
+│   └── events.controller.ts
+│   └── events.module.ts
+│   └── events.service.ts
+│   └── schemas/
+│       └── event.schema.ts
+├── app.module.ts
+└── main.ts
 ```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
